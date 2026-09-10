@@ -1,6 +1,6 @@
 # Scooter Media website
 
-Static website for Scooter Media. It has no runtime dependencies and builds to `dist/` for Cloudflare Pages, GitHub Pages, and Netlify.
+Static website for Scooter Media. It builds to `dist/` for Cloudflare Workers, GitHub Pages, and Netlify.
 
 ## Local preview
 
@@ -11,18 +11,18 @@ npm run preview
 
 Open <http://localhost:8000>.
 
-## Deploy with Cloudflare Pages
+## Deploy with Cloudflare Workers
 
 ### Git integration
 
-1. In Cloudflare, go to **Workers & Pages → Create → Pages → Connect to Git**.
-2. Select this GitHub repository and use these build settings:
+Connect this GitHub repository to the Worker and use these build settings:
+
    - Production branch: `main`
    - Build command: `npm run build`
-   - Build output directory: `dist`
-3. Save and deploy. Every push to `main` will trigger a production deployment.
+   - Deploy command: `npx wrangler deploy`
+   - Root directory: `/`
 
-The checked-in `wrangler.jsonc` keeps the Pages project name, compatibility date, and output directory in source control. No environment variables are required.
+Every push to `main` will trigger a production deployment. The checked-in `wrangler.jsonc` configures `dist/` as the Worker static-assets directory. No environment variables are required.
 
 ### Wrangler CLI
 
