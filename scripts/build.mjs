@@ -8,8 +8,10 @@ const output = resolve(root, "dist");
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 await cp(resolve(root, "assets"), resolve(output, "assets"), { recursive: true });
-await cp(resolve(root, "index.html"), resolve(output, "index.html"));
-await cp(resolve(root, "_headers"), resolve(output, "_headers"));
+
+for (const file of ["index.html", "_headers", "robots.txt", "sitemap.xml", "llms.txt"]) {
+  await cp(resolve(root, file), resolve(output, file));
+}
 
 const html = await readFile(resolve(output, "index.html"), "utf8");
 const localReferences = [...html.matchAll(/(?:src|href)="(assets\/[^"?#]+)(?:[?#][^"]*)?"/g)]
