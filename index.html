@@ -1147,20 +1147,15 @@
 
     .team-grid {
       margin-top: 80px;
-
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 24px 20px;
     }
 
-    /* Keep five people on the first row and center the remaining two. */
-    .team-grid > .person:nth-child(6) {
-      grid-column: 2;
-    }
-
-    .team-grid > .person:nth-child(7) {
-      grid-column: 3;
-    }
+    /* Center the final three team members beneath the first five. */
+    .team-grid > .person:nth-child(6) { grid-column: 2; }
+    .team-grid > .person:nth-child(7) { grid-column: 3; }
+    .team-grid > .person:nth-child(8) { grid-column: 4; }
 
     .person {
       text-align: center;
@@ -1616,13 +1611,10 @@
       }
 
       .team-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, minmax(0, 1fr));
       }
 
-      .team-grid > .person:nth-child(6),
-      .team-grid > .person:nth-child(7) {
-        grid-column: auto;
-      }
+      .team-grid > .person:nth-child(n) { grid-column: auto; }
 
       .network-grid {
         gap: 60px;
@@ -1657,8 +1649,10 @@
       }
 
       .team-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
+
+      .team-grid > .person:nth-child(n) { grid-column: auto; }
 
       .network-grid {
         grid-template-columns: 1fr;
@@ -2473,6 +2467,23 @@
 
           <p>
             Founder's Office
+          </p>
+
+        </div>
+
+
+        <div class="person">
+
+          <div class="person-image">
+            <img src="assets/36703.jpg" alt="Disha Haldar" loading="lazy" decoding="async" onerror="this.style.display='none';">
+          </div>
+
+          <h3>
+            Disha Haldar
+          </h3>
+
+          <p>
+            Founder's Office Intern
           </p>
 
         </div>
